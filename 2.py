@@ -40,3 +40,4 @@ for i, img_tag in enumerate(image_tags[:num_images]):
     with open(img_path, 'wb') as img_file:
         img_file.write(img_data)
 if __name__ == "__main__":
+download_images('polar bear', 'polar_bear', 1000)
