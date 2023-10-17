@@ -2,8 +2,9 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-download_images(query, folder_name, num_images):
 
+
+def download_images(query, folder_name, num_images):
     # Путь к рабочему столу пользователя
     desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
 
@@ -26,19 +27,22 @@ download_images(query, folder_name, num_images):
     # Создание папки для класса
     class_folder = os.path.join('dataset', folder_name)
     os.makedirs(class_folder, exist_ok=True)
-for i, img_tag in enumerate(image_tags[:num_images]):
-    img_url = img_tag['src']
 
-    # Добавление параметра timeout для избежания висения программы
-    img_data = requests.get(urljoin('https:', img_url), timeout=10).content
+    for i, img_tag in enumerate(image_tags[:num_images]):
+        img_url = img_tag['src']
 
-    # Генерация имени файла с ведущими нулями
-    file_name = f"{i:04d}.jpg"
+        # Добавление параметра timeout для избежания висения программы
+        img_data = requests.get(urljoin('https:', img_url), timeout=10).content
 
-    # Сохранение изображения в папку для класса
-    img_path = os.path.join(class_folder, file_name)
-    with open(img_path, 'wb') as img_file:
-        img_file.write(img_data)
+        # Генерация имени файла с ведущими нулями
+        file_name = f"{i:04d}.jpg"
+
+        # Сохранение изображения в папку для класса
+        img_path = os.path.join(class_folder, file_name)
+        with open(img_path, 'wb') as img_file:
+            img_file.write(img_data)
+
+
 if __name__ == "__main__":
-download_images('polar bear', 'polar_bear', 1000)
-download_images('brown bear', 'brown_bear', 1000)
+    download_images('polar bear', 'polar_bear', 1000)
+    download_images('brown bear', 'brown_bear', 1000)
