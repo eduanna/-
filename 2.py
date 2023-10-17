@@ -39,3 +39,4 @@ for i, img_tag in enumerate(image_tags[:num_images]):
     img_path = os.path.join(class_folder, file_name)
     with open(img_path, 'wb') as img_file:
         img_file.write(img_data)
+if __name__ == "__main__":
