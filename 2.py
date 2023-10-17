@@ -26,3 +26,16 @@ download_images(query, folder_name, num_images):
     # Создание папки для класса
     class_folder = os.path.join('dataset', folder_name)
     os.makedirs(class_folder, exist_ok=True)
+for i, img_tag in enumerate(image_tags[:num_images]):
+    img_url = img_tag['src']
+
+    # Добавление параметра timeout для избежания висения программы
+    img_data = requests.get(urljoin('https:', img_url), timeout=10).content
+
+    # Генерация имени файла с ведущими нулями
+    file_name = f"{i:04d}.jpg"
+
+    # Сохранение изображения в папку для класса
+    img_path = os.path.join(class_folder, file_name)
+    with open(img_path, 'wb') as img_file:
+        img_file.write(img_data)
