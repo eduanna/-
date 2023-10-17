@@ -41,3 +41,4 @@ for i, img_tag in enumerate(image_tags[:num_images]):
         img_file.write(img_data)
 if __name__ == "__main__":
 download_images('polar bear', 'polar_bear', 1000)
+download_images('brown bear', 'brown_bear', 1000)
